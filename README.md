@@ -20,46 +20,35 @@ Clone this repository:
    git clone https://github.com/Jennitong/statistics-skill-creator.git
    ```
 
-...
 
 - open/publicly available sources
-- assumption checking
-- hierarchical
+
 - why choose this
 
 
 This skill relies on progressie disclosure. All the files will be filled in by AI Agent, and is in the underneath format:
 
+```
 statistics-skill-creator/
-├── SKILL.md                  # contains YAML frontmatter, description, and general steps for AI Agent to go through
+├── SKILL.md                  # main skill definition- contains YAML frontmatter, description, and general steps for AI Agent to go through
 ├── references/
-│   ├── assumptions.md        (lists all assumptions to be verified)
-│   ├── eda.md                
-│   ├── guide.md
-│   ├── hierarchical.md
-│   ├── paper.md
-│   ├── skill-procedure.md
-│   └── validation.md/
+│   ├── assumptions.md        # lists and explains all assumptions to be verified; provides interpretations
+│   ├── eda.md                # provides instructions on how the exploratory data analysis should be completed
+│   ├── guide.md              # provides instructions and interpretations for each assumptions listed in `assumptions.md`
+│   ├── hierarchical.md       # provides instructions on how hierarchical outputs are conducted; deleted for general format
+│   ├── paper.md              # lists all the documents, textbooks and websites the use choose as references
+│   ├── skill-procedure.md    # contains instructions and the actual structure that the generated skill package should follow
+│   └── validation.md         # provides instructions and verified examples for user to verify the correctness of the skill. It does not show for regular reports due to progressive disclosure
 ├── scripts/
-│   ├── diagnostics.R
-│   ├── eda_code.R
-│   ├── task_code1.R
-│   ├── task_code2.R
-│   └── task_code3.R
-└── README.md
-
-```
-skill-name/
-├── SKILL.md (required)
-│   ├── YAML frontmatter (name, description required)
-│   └── Markdown instructions
-└── Bundled Resources (optional)
-    ├── scripts/    - Executable code for deterministic/repetitive tasks
-    ├── references/ - Docs loaded into context as needed
-    └── assets/     - Files used in output (templates, icons, fonts)
+│   ├── diagnostics.R         # contains codes to check the explicit assumptions
+│   ├── eda_code.R            # contains codes to complete the exploratory data analysis section
+│   ├── task_code1.R          # contains codes to complete task 1
+│   ├── task_code2.R          # contains codes to complete task 2
+│   └── task_code3.R          # contains codes to complete task 3
+└── README.md                 # provides documentary for this skill creator
 ```
 
-validation
+## validation
 
 Relies on R code as a back up. this folder is a scafolding and AI agents help fill them up with task-specific inputs.
 Note: User would still need to manually adjust details and need to go through the SKILL for verification and correction.
@@ -67,3 +56,8 @@ Note: User would still need to manually adjust details and need to go through th
 use of ai
 
 ## Hierarchical
+
+
+## Author
+
+Maintained by [Jennitong](https://github.com/Jennitong).
