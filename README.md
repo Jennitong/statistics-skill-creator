@@ -38,7 +38,7 @@ statistics-skill-creator/
 │   ├── hierarchical.md       # provides instructions on how hierarchical outputs are conducted; deleted for general format
 │   ├── paper.md              # lists all the documents, textbooks and websites the use choose as references
 │   ├── skill-procedure.md    # contains instructions and the actual structure that the generated skill package should follow
-│   └── validation.md         # provides instructions and verified examples for user to verify the correctness of the skill. It does not show for regular reports due to progressive disclosure
+│   └── validation.md         # provides instructions and verified examples for user to verify the correctness of the skill.
 ├── scripts/
 │   ├── diagnostics.R         # contains codes to check the explicit assumptions
 │   ├── eda_code.R            # contains codes to complete the exploratory data analysis section
