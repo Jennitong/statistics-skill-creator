@@ -5,7 +5,7 @@ This skill creator is flexible as it is able to deal with any kinds of tasks and
 
 ## Features
 
-- Interviews the user for details and methodologies that will be used for the task
+- Interviews the user for details and methodologies that will be used for the task (Read `Resources` section for more details)
 - Supports general (one format) or hierarchical (brief / moderate / detailed) report output (Read `Hierarchical` section for more details)
 - Relies on references the user provide - it collects references first so every generated skill grounds its methods, code, and interpretation in sources the end user supplies.
 - If the references do not contain information in certain section, Claude would offer suggestions, while the user is able to provide that information manually as well.
@@ -15,12 +15,20 @@ This skill creator is flexible as it is able to deal with any kinds of tasks and
 
 ## Installation
 
+**Method 1**:
 Clone this repository:
    ```bash
    git clone https://github.com/Jennitong/statistics-skill-creator.git
    ```
+**Method 2**:
 
+1. Download this `statistics-skill-creator` from GitHub.
+2. Zip this downloaded package.
+3. Go to claude.com or Claude's desktop app and open the sidebar, then select `customize`.
+4. Under the `Skills` tab, select `Add` and then `Upload` this zipped folder.
+5. This skill will be named statistica-skill-creator automatically.
 
+## Resources
 - open/publicly available sources
 
 - why choose this
@@ -28,6 +36,7 @@ Clone this repository:
 
 This skill relies on progressie disclosure. All the files will be filled in by AI Agent, and is in the underneath format:
 
+## Structure
 ```
 statistics-skill-creator/
 ├── SKILL.md                  # main skill definition- contains YAML frontmatter, description, and general steps for AI Agent to go through
@@ -48,7 +57,7 @@ statistics-skill-creator/
 └── README.md                 # provides documentary for this skill creator
 ```
 
-## validation
+## Validation
 
 Relies on R code as a back up. this folder is a scafolding and AI agents help fill them up with task-specific inputs.
 Note: User would still need to manually adjust details and need to go through the SKILL for verification and correction.
