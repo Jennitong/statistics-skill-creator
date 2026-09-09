@@ -23,10 +23,16 @@ Clone this repository:
 **Method 2**:
 
 1. Download this `statistics-skill-creator` from GitHub.
+
 2. Zip this downloaded package.
+
 3. Go to claude.com or Claude's desktop app and open the sidebar, then select `customize`.
+
 4. Under the `Skills` tab, select `Add` and then `Upload` this zipped folder.
+
 5. This skill will be named statistica-skill-creator automatically.
+
+**Note**: The user could choose to zip the entire downloaded folder and upload as skill. Alternatively, the user could manually delete the `statistics-skill-creator.Rproj` file before zipping for efficiency and smaller digital storage size. Either way, the skill package could smoothly execute.
 
 ## Usage
 
@@ -44,16 +50,12 @@ To use our SKILL.md statistical assistant:
 
 To use this SKILL.md, users can explicitly ask Claude Code to use the `statistical-skill-creator` skill to conduct the analysis. Otherwise, users can trigger tasks through task-specific phrases.
 
-  - "Survival analysis"
-  - "Kaplan-Meier"
-  - "KM curve"
-  - "Log-rank test"
-  - "Time to event"
-  - "Censored data"
-  - "Event time"
-  - "Survival probability"
+- "new skill"
+-  "skill-procedure"
+-  "make this a skill"
 
 ## Resources
+
 AI Agent has massive database and knowledge to solve most problems, however, the methodologies AI suggests might not be the specific ones we would like to apply. Therefore, during the skill creation process, users have the option to provide specific papers, documents or website they want AI to refer to when completing certain tasks. These resources could provide information on how and which assumptions need to be confirmed, how to properly conduct exploratory data analysis, which codes to use, how to compute important numerical values, etc. However, these resources need to be publicly available and accessible for AI Agents. If not, user could manually upload texts, PDFs or images provided such use **does not** infringe on any copyright. The user is responsible for the files they upload.
 
 
@@ -86,10 +88,27 @@ statistics-skill-creator/
 Relies on R code as a back up. this folder is a scafolding and AI agents help fill them up with task-specific inputs.
 Note: User would still need to manually adjust details and need to go through the SKILL for verification and correction.
 
+this step is only for developer, not for SKILL user
+Should be hidden unless explicitly mentioned.
+This step is only disclosed when developer explicitly asks for testing the validity
+of the SKILL. This is different from Step 1 Validate Inputs. It is used only for checking
+the validity of the entire SKILL.md file.Do not mention anything related to this 
+step for regular SKILL user.
+100% correctness rate with efficient executing speed.
 
 ## Hierarchical
 
+Our SKILL.md provides three output options of differing levels of detail to best meet varying statistical and clinical needs. The options are as follows:
 
-## Author
+- **Brief**: reports only the test statistic, p-value, hypothesis testing decision, and a one-line outcome summary. Best suited for professionals and practitioners who are already familiar with the relevant statistical methods and need results, not explanations.
 
+- **Moderate**: includes everything in Brief, along with an explanation of the test assumptions and supporting tables where relevant. Best suited for users who have studied the relevant statistical concepts but are not deeply experienced with them in practice.
+
+- **Detailed**: includes everything in Moderate, plus a comprehensive summary on the statistical method, definitions of all key terms, and step-by-step interpretations. Best suited for users without a formal statistical background who need conceptual grounding alongside the results.
+
+
+## Disclaimer
+During the preparation of this work, the authors utilized Claude AI to assist with structure optimization, debugging, and language clarity of the developed skill. The core conceptual logic, idea, and system design were independently conceived by the authors. All AI-modified snippets were thoroughly reviewed, verified, and tested by the authors.
+
+---
 Maintained by [Jennitong](https://github.com/Jennitong).
