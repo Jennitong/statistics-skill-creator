@@ -28,15 +28,39 @@ Clone this repository:
 4. Under the `Skills` tab, select `Add` and then `Upload` this zipped folder.
 5. This skill will be named statistica-skill-creator automatically.
 
+## Usage
+
+To use our SKILL.md statistical assistant:
+
+1. Choose the `Code` option.
+
+2. Enter your clinical scenario or question with the **triggering words**, and any relevant dataset.
+
+3. If prompted, allow Claude to run or install any packages.
+
+4. After the new skill package is created, make sure to go through the details in the package. Users might need to correct discrepancies in the files.
+
+### Triggering Words
+
+To use this SKILL.md, users can explicitly ask Claude Code to use the `statistical-skill-creator` skill to conduct the analysis. Otherwise, users can trigger tasks through task-specific phrases.
+
+  - "Survival analysis"
+  - "Kaplan-Meier"
+  - "KM curve"
+  - "Log-rank test"
+  - "Time to event"
+  - "Censored data"
+  - "Event time"
+  - "Survival probability"
+
 ## Resources
-- open/publicly available sources
+AI Agent has massive database and knowledge to solve most problems, however, the methodologies AI suggests might not be the specific ones we would like to apply. Therefore, during the skill creation process, users have the option to provide specific papers, documents or website they want AI to refer to when completing certain tasks. These resources could provide information on how and which assumptions need to be confirmed, how to properly conduct exploratory data analysis, which codes to use, how to compute important numerical values, etc. However, these resources need to be publicly available and accessible for AI Agents. If not, user could manually upload texts, PDFs or images provided such use **does not** infringe on any copyright. The user is responsible for the files they upload.
 
-- why choose this
 
+## Structure
 
 This skill relies on progressie disclosure. All the files will be filled in by AI Agent, and is in the underneath format:
 
-## Structure
 ```
 statistics-skill-creator/
 ├── SKILL.md                  # main skill definition- contains YAML frontmatter, description, and general steps for AI Agent to go through
@@ -62,7 +86,6 @@ statistics-skill-creator/
 Relies on R code as a back up. this folder is a scafolding and AI agents help fill them up with task-specific inputs.
 Note: User would still need to manually adjust details and need to go through the SKILL for verification and correction.
 
-use of ai
 
 ## Hierarchical
 
