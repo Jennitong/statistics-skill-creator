@@ -100,9 +100,13 @@ values that summarizes...
 
 **References**
 
-Only shown for `detailed` or `moderate` response levels, and only if Step 0 turned up
-one or more usable references for this run (Step 0 already asked — do not ask again
-here). Cite them via `references/paper.md` and/or the sources the client supplied
-directly. Omit this section entirely if Step 0 came up empty for this run.
+Only shown for `detailed` or `moderate` response levels. Step 0 already handled
+whether to ask — do not ask again here. Two cases, matching whichever Step 0 variant
+this skill uses:
+- **Variant A** (references fixed at creation time): always include this section,
+  listing the pre-formatted citations from `references/paper.md`.
+- **Variant B** (per-run ask): include this section only if Step 0 turned up one or
+  more usable references this run (cite via `references/paper.md` and/or what the
+  client supplied directly); omit it entirely if Step 0 came up empty this run.
 
 ---

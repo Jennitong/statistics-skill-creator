@@ -42,6 +42,26 @@ After getting the user's response, AI should access and read the references befo
 asking any other questions regarding specific methodologies or details for 
 the task.
 
+If the client names one or more usable references, follow up (still before moving on
+to anything else) with:
+
+> What citation format would you like these listed in — APA, MLA, Chicago, or another
+> style? And could you give me the author(s), year, title, and publisher/journal/URL
+> for each, for whatever isn't already implied by what you gave me?
+
+Format every citation exactly in the style the client picks, filling in only the
+fields they confirm — never invent an author, year, or venue that wasn't given or
+confirmed. Record the finished, formatted citations in the new skill's
+`references/paper.md` now, at creation time — this is a one-time step, not something
+the finished skill repeats per run.
+
+Because the references are now fixed at creation time, the generated skill must
+**not** re-ask its own end users the references question at all when it later runs —
+see "Building in the references question" below for exactly how Step 0 and Step 5
+change in that case. If the client has no references to offer, skip the
+citation-format question entirely and keep the generated skill's standard per-run
+references question (unchanged, see Branch B below).
+
 Also, read [`references/skill-procedure.md`](references/skill-procedure.md) in full before
 proceeding — it is the master template every generated skill is built from.
 
@@ -67,9 +87,9 @@ anything that changes the statistical result.
 | Step 4 — Execute R Code | Which R function/package implements the test, and how many distinct task scripts are needed | "Which R function implements this (e.g. `stats::t.test`, `survival::coxph`)? Does this skill need more than one variant (e.g. one test path per assumption outcome)?" | Default to one `task_codeN.R` per distinct decision branch (e.g. Fisher's exact vs. chi-square) |
 | Step 5 — Output | Single-level (general) report, or hierarchical (brief/moderate/detailed)? What extra tables/plots (beyond EDA) belong in Results? | Always give the explanation below *before* asking, then ask: "Do you want a general output level, or hierarchical output?" | If hierarchical is wanted, use `references/hierarchical.md`'s content instead of the template's flat Step 5 — see Step 2 below |
 | Step 5 — Result type(s) | The distinct kinds of result this test's report can present (e.g. hypothesis-testing decision, effect/coefficient interpretation, predicted values) | "For this procedure, what output should the report contain — a hypothesis-testing decision, an effect/coefficient interpretation, or should the finished skill ask the end user each time it runs?" | Offer the standard options for that test family, around two to three suggestions (e.g. regression: fitted-model interpretation vs. hypothesis testing)|
-| References (fixed, not interviewed) | Every generated skill's Step 0 must open by asking its own end user for public references before anything else | Not asked here — this is a standing policy, not a per-skill choice. There are no public references for the skill-creation structure itself; each generated skill's end users supply their own, per run | N/A — see "Building in the references question" below for the exact wording to bake in |
-| Examples | 1–2+ worked examples with the input and the expected conclusion | "Can you give an example input and what conclusion it should produce?" — user-supplied examples are preferred, since they reflect real cases this skill needs to get right | If the user has none ready, don't block on it — propose your own (see below) for them to confirm or edit |
-| Validation | A small set of examples covering an edge case, a deliberately invalid input, and at least one valid case (refer to `references/validation.md`'s scaffold) | Reuse the Examples answers; if they only cover the valid/typical case, ask specifically: "Should I also draft an edge case and an invalid-input case for validation, or do you have ones in mind?" | Suggest one (see below) for each missing category |
+| References | Whether the client has real, citable references to bake in now, and if so, which citation format (APA/MLA/Chicago/...) and what author/year/title/venue details to format them with | Step 0's opening question, then (only if references were offered) the citation-format follow-up | If references are supplied, format and store them now in `references/paper.md` and drop the generated skill's per-run references question entirely; if not, the generated skill keeps asking its own end users every run — see "Building in the references question" below |
+| Examples | 1–2+ worked examples with the input and the expected conclusion; if the client supplies an actual data file (CSV, etc.) for one, that file itself | "Can you give an example input and what conclusion it should produce?" — user-supplied examples are preferred, since they reflect real cases this skill needs to get right | If the user has none ready, don't block on it — propose your own (see below) for them to confirm or edit. If a real data file is supplied, save it into the new skill's `data/` folder and reference it by path (`data/<name>.csv`) instead of inlining values; skip the `data/` folder entirely if no file was ever supplied |
+| Validation | A small set of examples covering an edge case, a deliberately invalid input, and at least one valid case (refer to `references/validation.md`'s scaffold); reuse any data file(s) from Examples where applicable | Reuse the Examples answers; if they only cover the valid/typical case, ask specifically: "Should I also draft an edge case and an invalid-input case for validation, or do you have ones in mind?" | Suggest one (see below) for each missing category. Point validation inputs at `data/<name>.csv` rather than restating raw values whenever a data file already exists in the new skill's `data/` folder |
 | Folder Storage| Where the newly created SKILL folder should be saved (e.g. desktop/doanloades, etc.)| "Where in your device would you like the SKILL folder to be saved?" | ".../Downloades", ".../Desktop", etc.) |
 
 ### Suggesting examples when the user has none
@@ -130,11 +150,24 @@ options belong in that list.
 
 ### Building in the references question
 
-Every generated skill must ask its own end user for references **before anything
-else**, as the opening of its Step 0 (see `skill-procedure.md`'s Step 0 — Gather
-References, then Extract Inputs). This is fixed and does not need to be interviewed
-for or confirmed with the user creating the skill — just carry the wording in the
-template through verbatim:
+Whether the generated skill asks its own end users for references depends on what
+happened in **this** creation interview — pick one branch, not both.
+
+**Branch A — the client supplied usable references during this interview.** Do not
+carry any references question into the new skill — its end users are never asked.
+Instead:
+- The citations, already formatted in the client's chosen style, live in the new
+  skill's `references/paper.md` (filled in per the citation-format follow-up above).
+- The new `SKILL.md`'s Step 0 uses `skill-procedure.md`'s **Variant A** wording (skip
+  straight to "Extract Inputs" — no question asked).
+- The new `SKILL.md`'s Step 5 References section is unconditional: it always lists
+  the pre-baked citations from `references/paper.md`, since they're fixed and don't
+  depend on anything happening at run time.
+
+**Branch B — the client had no references to offer.** Keep the current, unchanged
+behavior: the generated skill must ask its own end user for references **before
+anything else**, as the opening of its Step 0 (`skill-procedure.md`'s **Variant B**).
+Carry the wording through verbatim:
 
 > Are there any publicly available references (papers, textbooks, methodology guides, websites, PDFs,
 > etc.) I should rely on for the methods, assumptions, code, or interpretation in this
@@ -148,12 +181,13 @@ template through verbatim:
   continue with the rest of the run using standard, field-default assumptions.
 - No references offered → continue using standard, field-default assumptions.
 
-This is a per-run ask, not one-time. Whatever is confirmed usable that run flows
-straight into that run's Step 5 References section (or the hierarchical
+This is a per-run ask in Branch B only, not one-time. Whatever is confirmed usable that
+run flows straight into that run's Step 5 References section (or the hierarchical
 moderate/detailed levels' References section, if hierarchical output was chosen) —
-Step 5 does not ask about references a second time. Do include `references/paper.md`
-in the new skill's `references/` folder (even close to empty) so there's somewhere to
-record what the end user supplies.
+Step 5 does not ask about references a second time.
+
+In **both** branches, include `references/paper.md` in the new skill's `references/`
+folder (even close to empty in Branch B) so there's somewhere to record citations.
 
 ## Step 2 — Generate the files
 
@@ -164,15 +198,25 @@ Create a new folder named after the skill (e.g. `paired-t-test/`), sibling to
   section from Step 1 filled in. If hierarchical output was requested, delete that
   template's flat **Step 5 — Output** and paste in `references/hierarchical.md`'s content instead
   (per the instructions inside that file); otherwise keep the flat version and delete
-  the "Optional for Step 5" block. Delete the `<!-- AUTHORING NOTE -->` comment and the
+  the "Optional for Step 5" block. For Step 0, keep exactly one of the two variants
+  per "Building in the references question": **Variant A** (no question, References
+  section always shown) if the client supplied usable references this interview,
+  otherwise **Variant B** (today's per-run question, unchanged). Delete the
+  `<!-- AUTHORING NOTE -->` comments and the variant you didn't use, and the
   `# Validation steps` section is kept (it's meant to ship with the finished skill, just
   hidden from regular users, per its own text).
 - `references/eda.md`, `references/assumptions.md`, `references/guide.md`,
   `references/validation.md` — filled in for this procedure. `references/paper.md` is
   always included (per the fixed references policy above) — pre-populate it with any
-  real citable methodology sources the user names during this interview (even if 
-  not accessible); do not include this section if the user did not provide any 
+  real citable methodology sources the user names during this interview, formatted in
+  their chosen citation style; do not include this section if the user did not provide any 
   specific references.
+- `data/` — only if the client supplied an actual data file (CSV or similar) used for
+  a worked example or a validation case. Copy the file(s) in as provided, keeping the
+  given filename (e.g. `data/patient_outcomes.csv`), and point `## Examples` and
+  `references/validation.md`'s example inputs at that relative path (e.g. "Input:
+  `data/patient_outcomes.csv`") instead of restating raw values inline. If no data
+  file was ever supplied, skip this folder entirely — don't create an empty one.
 - `scripts/eda_code.R`, `scripts/diagnostic.R`, `scripts/task_code1.R` (renumber/add
   more as decided in Step 1) — real, runnable R code implementing what was discussed,
   not placeholder comments. Each `task_codeN.R` follows the
@@ -187,11 +231,19 @@ copy and adapt — do not re-derive their structure from scratch.
 
 Before telling the user the skill is ready, verify:
 
-- Every `references/...` and `scripts/...` path mentioned inside the new `SKILL.md`
-  and its reference files actually exists in the new folder (open each file and grep
-  for `references/` and `scripts/` to confirm — this exact class of bug, a path
-  pointing at a file that doesn't exist, is what shipped in this template before it
-  was fixed).
+- Every `references/...`, `scripts/...`, and `data/...` path mentioned inside the new
+  `SKILL.md` and its reference files actually exists in the new folder (open each file
+  and grep for `references/`, `scripts/`, and `data/` to confirm — this exact class of
+  bug, a path pointing at a file that doesn't exist, is what shipped in this template
+  before it was fixed).
+- If no data file was ever supplied during the interview, confirm no `data/` folder
+  was created and no `data/...` path was left in any file.
+- Exactly one references variant survives: if references were supplied this
+  interview, `references/paper.md` has the formatted citations, Step 0 asks no
+  question, and Step 5's References section is unconditional; otherwise Step 0 keeps
+  its per-run question and Step 5's References section stays conditional on it. No
+  leftover trace of the other branch (e.g. an unused question, or a hard-coded
+  References section with nothing behind it).
 - No leftover placeholder text remains (`[...]`, `TODO`, `e.g.` scaffolding, bracketed
   instructions).
 - The YAML frontmatter is valid (opens and closes with `---`, has `name` and

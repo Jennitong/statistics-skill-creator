@@ -28,15 +28,17 @@ description: >
     end user which one they want on every run (see Step 5 below) — never bake in a
     single default silently.
   - Whether References should ever appear in the report, and if so from where.
+  - Whether any real data file was supplied for a worked example or validation case
+    (if so, it belongs in this skill's own `data/` folder, referenced by relative
+    path — see Examples and Validation steps below; if not, skip that folder).
 
   Once every section below is filled in, check the finished SKILL.md for errors
   (typos, broken file paths, leftover placeholder text/brackets) before handing it
   to the user.
 
-  Step 0's reference-gathering behavior (below) is a fixed, non-negotiable policy for
-  every generated skill — do not ask the interviewee whether to include it, and do not
-  remove or water it down. The specific citable sources are naturally left blank here;
-  each generated skill's own end users supply those per run.
+  Step 0 below has two mutually exclusive variants (A and B) — keep exactly one,
+  matching whether the client supplied real references during the creation
+  interview. See that section's own authoring note for which to use.
 -->
 
 
@@ -58,6 +60,26 @@ such as figures, charts, documents, data sets, and so on.
 ---
 
 ## Step 0 — Gather References, then Extract Inputs
+
+<!-- AUTHORING NOTE (delete this comment, and whichever variant below isn't used,
+once resolved): this section has two mutually exclusive variants.
+
+- Use Variant A if the client supplied real, usable references during the
+  skill-creation interview (statistics-skill-creator's Step 0 already gathered these,
+  formatted in the citation style the client picked, and stored them in
+  references/paper.md).
+- Use Variant B (the default when no references were supplied at creation time) if
+  the client had none to offer — the generated skill keeps asking its own end users,
+  every run. -->
+
+### Variant A — references already fixed at creation time
+
+References for this skill were gathered and formatted when it was built; do not ask
+the end user about references at all — skip straight to "Extract Inputs" below. The
+formatted citations already live in `references/paper.md`, and Step 5's References
+section always includes them (see Step 5).
+
+### Variant B — ask the end user every run
 
 **Before asking anything else**, ask the client this **single** question (do not stack
 it with other questions. This is the single question that needs to be confirm at first, not
@@ -87,12 +109,10 @@ time there.
 This is also the first and single question to be asked. It should be the sole question
 as the first step, it does not arrive with a bunch of other questions.
 
+### Extract Inputs
+
 If the client provides sentences that contain inputs, extract and store them.
 
-**Note:** This question is only asked for the skill-creation process. This question should not
-be included in the new skill created by this statistics-skill-creator. This references
-question should only show up during the SKILL creation process, but not the actual report or 
-analysis.
 ---
 
 ## Step 1 — Validate Inputs
@@ -237,10 +257,16 @@ This is a **per-run** question — ask it every time this skill is asked to prod
 report, not only the first time. Different users of this same skill may want
 different things from the same procedure; never default to one result type silently.
 
-References are not asked about again here — Step 0 already asked. If Step 0 turned up
-one or more usable references for this run, cite them (via `references/paper.md` and/or
-what the client supplied directly) in the References section below. If Step 0 came up
-empty for this run, omit the References section entirely.
+References are not asked about again here — Step 0 already handled it. Two cases,
+matching whichever Step 0 variant this skill uses:
+
+- **Variant A** (references fixed at creation time): always include the References
+  section below, listing the pre-formatted citations from `references/paper.md` in the
+  citation style chosen when this skill was built.
+- **Variant B** (per-run ask): include the References section only if Step 0 turned up
+  one or more usable references this run (cite them via `references/paper.md` and/or
+  what the client supplied directly); omit the section entirely if Step 0 came up empty
+  this run.
 
 **Tone for all levels:** Professional but accessible. Write for a stakeholder who 
 understands "statistically significant" but does not need to verify the math. Define 
@@ -326,6 +352,12 @@ This section is what the user is expecting to see for the analysis. User should
 write these example manually with their expectation, so SKILL.md will follow.
 Note that the example format should align with Step 5's instruction, so the two
 will not be contradictory and confusing.
+
+If a worked example uses a real data file the client supplied (rather than a
+handful of inline values), the file lives in this skill's `data/` folder — write the
+Input line as that relative path, e.g. `Input: data/patient_outcomes.csv`, instead of
+listing raw values. If no data file was supplied for this skill, ignore this and use
+inline values as usual.
 
 ### Example A — Input set 1
 

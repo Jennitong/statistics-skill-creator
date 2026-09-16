@@ -18,6 +18,11 @@ All examples take the following inputs
 - `variable 4` : description
 - ...
 
+If validation relies on a real data file the client supplied at creation time, it
+lives in this skill's `data/` folder — reference it by relative path (e.g.
+`data/patient_outcomes.csv`) in the example rows below instead of restating raw
+values. Skip this note if no data file was ever supplied for this skill.
+
 ## Running the examples efficiently
 
 Do **not** invoke the full conversational skill (Steps 0–5) separately for each of the
@@ -36,7 +41,7 @@ path is fully deterministic. To validate it quickly:
    
 
 - Example 1 (Edge Cases)
-Input:
+Input: (inline values, or `data/<name>.csv` if this example uses a supplied data file)
 Output expected:
 
 - Example 2 (Invalid inputs on purpose)
