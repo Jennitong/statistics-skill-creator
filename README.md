@@ -1,3 +1,6 @@
+#### Add some demo's
+
+
 # statistics-skill-creator
 
 This SKILL.md does not itself run any statistical tasks - its aim is to help users generate their own SKILL.md packages that evaluate statistical tasks with only a few prompts and information. Once the user describes what task should be done, this skill creator is able to generate a reusable skill package for you that aims at solving that specific task. This skill creator follows a specific procedure for any kind of statistical task. The generated SKILL.md package will ask for the references that support the tasks, and it is able to verify inputs, conduct exploratory data analysis, check assumptions, and generate the full reports.
