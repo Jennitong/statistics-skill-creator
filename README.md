@@ -1,4 +1,4 @@
-#### Add some demo's
+#### Add some demo's: showcase what we have done what our skill creator could do.
 
 
 # statistics-skill-creator
