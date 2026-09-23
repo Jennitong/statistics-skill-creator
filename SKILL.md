@@ -89,7 +89,7 @@ anything that changes the statistical result.
 | Step 5 — Result type(s) | The distinct kinds of result this test's report can present (e.g. hypothesis-testing decision, effect/coefficient interpretation, predicted values) | "For this procedure, what output should the report contain — a hypothesis-testing decision, an effect/coefficient interpretation, or should the finished skill ask the end user each time it runs?" | Offer the standard options for that test family, around two to three suggestions (e.g. regression: fitted-model interpretation vs. hypothesis testing)|
 | References | Whether the client has real, citable references to bake in now, and if so, which citation format (APA/MLA/Chicago/...) and what author/year/title/venue details to format them with | Step 0's opening question, then (only if references were offered) the citation-format follow-up | If references are supplied, format and store them now in `references/paper.md` and drop the generated skill's per-run references question entirely; if not, the generated skill keeps asking its own end users every run — see "Building in the references question" below |
 | Examples | 1–2+ worked examples with the input and the expected conclusion; if the client supplies an actual data file (CSV, etc.) for one, that file itself | "Can you give an example input and what conclusion it should produce?" — user-supplied examples are preferred, since they reflect real cases this skill needs to get right | If the user has none ready, don't block on it — propose your own (see below) for them to confirm or edit. If a real data file is supplied, save it into the new skill's `data/` folder and reference it by path (`data/<name>.csv`) instead of inlining values; skip the `data/` folder entirely if no file was ever supplied |
-| Validation | A small set of examples covering an edge case, a deliberately invalid input, and at least one valid case (refer to `references/validation.md`'s scaffold); reuse any data file(s) from Examples where applicable | Reuse the Examples answers; if they only cover the valid/typical case, ask specifically: "Should I also draft an edge case and an invalid-input case for validation, or do you have ones in mind?" | Suggest one (see below) for each missing category. Point validation inputs at `data/<name>.csv` rather than restating raw values whenever a data file already exists in the new skill's `data/` folder |
+| Validation | Whether validation should be built from worked examples, simulated data, or both, and the specific cases within that (edge case, deliberately invalid input, at least one valid/true-effect case) (refer to `references/validation.md`'s scaffold); reuse any data file(s) from Examples where applicable | "For validation of the skill, would you like to suggest some examples, or would you like to suggest some simulations? I can do either for you." — then follow "Choosing between examples and simulations for validation" below | Suggest one of each missing category, in whichever mode (examples or simulations) the user picked. Point validation inputs at `data/<name>.csv` rather than restating raw values whenever a data file already exists in the new skill's `data/` folder |
 | Folder Storage| Where the newly created SKILL folder should be saved (e.g. desktop/doanloades, etc.)| "Where in your device would you like the SKILL folder to be saved?" | ".../Downloades", ".../Desktop", etc.) |
 
 ### Suggesting examples when the user has none
@@ -111,6 +111,46 @@ rather than invent one from scratch. Cover, where relevant:
 Never mark a suggested example as accepted without the user confirming it — an
 unconfirmed guess at the "expected outcome" would make `references/validation.md`'s
 correctness check meaningless.
+
+### Choosing between examples and simulations for validation
+
+Before drafting anything for `references/validation.md`, ask the client which mode
+they want validation built from:
+
+> For validation of the skill, would you like to suggest some examples, or would you
+> like to suggest some simulations? I can do either for you.
+
+**If the client picks examples** — proceed exactly as in "Suggesting examples when the
+user has none" above: reuse the Examples answers wherever they already cover a case,
+and suggest/confirm the rest (edge case, invalid input, valid case).
+
+**If the client picks simulations** — propose 1–2 simulated datasets appropriate to
+this procedure's statistical logic, each with a known ground truth built into how it's
+generated, and also ask the client whether they have their own simulation scenario(s)
+to provide instead. Ground every suggested simulation in what should or shouldn't be
+detected, e.g.:
+
+- For a test of association/effect (regression, ANOVA, proportion tests, etc.):
+  simulate data with **no true relationship** (e.g., an outcome drawn independently of,
+  or randomly permuted against, the predictor) — the test should correctly fail to
+  detect an effect — and simulate data with a **known, injected effect** of a stated
+  size — the test should correctly detect it.
+- For assumption checks specifically (normality, equal variance, independence, etc.):
+  simulate data that **violates** the assumption on purpose (e.g., heavy-tailed errors
+  for a normality check, an AR(1) structure for an independence check) so the skill's
+  assumption-check step is confirmed to flag it, alongside data that **satisfies** the
+  assumption so it's confirmed not to false-flag.
+- State the generating process precisely enough to be reproducible: sample size,
+  distributions/parameters, injected effect size, and a fixed random seed. Record this
+  description (not just the realized numbers) in `references/validation.md`'s Input
+  field for that example.
+- Never present a simulated "expected outcome" as ground truth without the user
+  confirming it — same rule as user-supplied or AI-suggested examples.
+
+Either way, the comparison step at the bottom of `references/validation.md`
+("Correctness Rate") does not change: it always compares the actual output the
+finished skill produces against the expected/true answer for that example or
+simulation, and reports the correctness rate and per-case table exactly as scaffolded.
 
 ### Explaining the output-level choice
 

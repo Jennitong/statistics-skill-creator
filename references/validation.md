@@ -23,6 +23,12 @@ lives in this skill's `data/` folder — reference it by relative path (e.g.
 `data/patient_outcomes.csv`) in the example rows below instead of restating raw
 values. Skip this note if no data file was ever supplied for this skill.
 
+If an example's input is simulated rather than a fixed dataset, describe the
+generating process here instead of literal values — sample size,
+distributions/parameters, any injected effect size or assumption violation, and a
+fixed random seed — so it can be regenerated deterministically. Skip this note if
+validation uses only worked examples for this skill.
+
 ## Running the examples efficiently
 
 Do **not** invoke the full conversational skill (Steps 0–5) separately for each of the
