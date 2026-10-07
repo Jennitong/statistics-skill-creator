@@ -1,4 +1,4 @@
-# statistics-skill-creator
+# statistics-skill-creator: A Meta-Skill for Generating Reusable, Reference-Grounded Analytical Workflows for LLM Agents
 
 This skill does not run statistical analyses itself. Instead, it helps users generate their own SKILL.md packages for statistical tasks with only a few prompts and minimal information. Once the user describes the task, the skill creator generates a reusable skill package designed to solve that specific task. The creator follows a consistent procedure for any kind of statistical task. Each generated skill package asks for the references that support the task, and it can validate inputs, conduct exploratory data analysis, check assumptions, and generate full reports.
 
