@@ -67,7 +67,7 @@ AI Agent has a massive database and knowledge base to solve most problems; howev
 
 This skill relies on progressive disclosure. All the files will be filled in by AI Agent, and are in the following format:
 ```
-<generated-skill>/
+<statistics-skill-creator>/
 ├── SKILL.md                  # main skill definition: YAML frontmatter, description, and the general steps for the AI agent to follow
 ├── references/
 │   ├── assumptions.md        # lists and explains all assumptions to be verified; provides interpretations
