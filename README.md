@@ -67,23 +67,25 @@ AI Agent has a massive database and knowledge base to solve most problems; howev
 
 This skill relies on progressive disclosure. All the files will be filled in by AI Agent, and are in the following format:
 ```
-<statistics-skill-creator>/
-├── SKILL.md                  # main skill definition: YAML frontmatter, description, and the general steps for the AI agent to follow
+<generated-skill>/
+├── SKILL.md                  # Main skill definition: YAML front matter, skill description, and the high-level workflow the AI agent follows
 ├── references/
-│   ├── assumptions.md        # lists and explains all assumptions to be verified; provides interpretations
-│   ├── eda.md                # instructions for completing the exploratory data analysis
-│   ├── guide.md              # instructions and interpretations for each assumption listed in `assumptions.md`
-│   ├── hierarchical.md       # instructions for producing hierarchical outputs; removed for the general format
-│   ├── paper.md              # lists the documents, textbooks, and websites the user chose as references
-│   ├── skill-procedure.md    # instructions and the template structure the generated skill package follows
-│   └── validation.md         # instructions and verified examples for checking the correctness of the skill
+│   ├── assumptions.md        # Defines the assumptions relevant to the statistical procedure and the evidence used to assess them
+│   ├── eda.md                # Specifies the exploratory data analysis to perform before formal modeling or testing
+│   ├── guide.md              # Provides methodological guidance and interpretation rules for the assumptions and analytical steps
+│   ├── hierarchical.md       # Defines the optional hierarchical report structure and the information included at each output level
+│   ├── paper.md              # Records the methodological references (textbooks, articles, documentation, websites) used to build the skill
+│   ├── skill-procedure.md    # Defines the standardized structure and construction procedure for a generated skill package
+│   └── validation.md         # Stores validation instructions, worked examples, simulations, expected outputs, and comparison criteria
 ├── scripts/
-│   ├── diagnostic.R          # code to check the explicit assumptions
-│   ├── eda_code.R            # code for the exploratory data analysis
-│   ├── task_code1.R          # code for task 1
-│   ├── task_code2.R          # code for task 2
-│   └── task_code3.R          # code for task 3
-└── README.md                 # documentation for the skill
+│   ├── diagnostics.R         # Code for assumption checks and model diagnostics
+│   ├── eda_code.R            # Code for the exploratory data analysis
+│   ├── task_code1.R          # Code for the first procedure-specific analytical task
+│   ├── task_code2.R          # Code for the second procedure-specific analytical task
+│   └── task_code3.R          # Code for the third procedure-specific analytical task
+├── data/
+│   └── data.csv              # Optional dataset for examples, simulations, or validation during skill development
+└── README.md                 # Human-readable documentation describing the purpose and use of the skill package
 ```
 ## Validation
 
@@ -104,21 +106,32 @@ Apart from general output format, this skill provides three output options of di
 
 ## Demonstrations
 
-Under the `\Demonstration` folder, there are a few skill files aimed at conducting two-sample t-test, survival analysis, poisson regression, and linear regression. Users could download the zippped files and use them in Claude, and conduct the test on any data set. All of the skills are included for demonstarion purposes. If user would like to use these tools, they should proof read the relevant skill, and see if certain methodologies and result meet their expectations. The user could feel free to customize the zipped skills, as long as it better assists with their needs.
+The `Demonstration/` folder contains example skills covering two-group comparisons, survival analysis, linear regression, and Poisson regression. Each is provided as a zipped package that can be uploaded to Claude and run on any suitable dataset.
 
-Specifically, the skills for survival analysis and two-sample t-test comes in two versions: a skill package created by author manually, and a skill package created using `statistics-skill-creator`. These two versions are included for usage and comparison purposes.
+These skills are included for demonstration purposes. Before using one in practice, review its contents to confirm that the methodology, assumptions, and output meet your needs. Users are free to customize any of the packages.
 
-`skill-procedure-binary` vs `two-sample-t-test`: The manually created two-sample t-test skill package, `skill-procedure-binary`, and the `statistics-skill-creator`-created skill file, `two-sample-t-test`, will return the user bar plots comparing both groups, input verification, contingency table, test choice between Fisher's Exact test and Chi-squared test based on sample size, assumption checking, inferences, hierarchical response levels, and validation. The structures presented (such as the order and format) are slightly deviated, but the core methodology is the same. This could show that when the same methodologies are used, the core test result will be similar, whether the skill package is human-generated or LLM-agent-generated.
+### Manual vs. generated skills
 
-`skill-procedure-survival` vs `kaplan-meier-logrank`: The manually created survival analysis file, `skill-procedure-survival`, has some differences compared to the skill generated using `statistics-skill-creator` , `kaplan-meier-logrank`. The latter would generate reports that contain more plots, such as the log-log plot and histogram for distribution over follow-up times for categorical variable, and a Schoenfeld residual plot for assessing proportional-hazards assumption. However, the general report still follow the same structure will similar core contents, as well as the validation step. Thus, we can see that although both are built for the same purpose, if methodologies are different or if design are complicated to different levels, user will end up with skills that may be similar in the core concepts but differ in details. Thus, it is still important to keep in mind that users are highlyh recommended to go though the detailed in the generated skill file, and should verify the usage by using it on LLM agents. If anything undesirable happens, the user should be able to edit or let LLM agent to do the correction. The important details might deviated from what the users expect and what the LLM agents understand. Thus, the generated skills should be treated with caution and be supervised.
+Two of the demonstrations come in pairs: one written manually by the author and one generated with `statistics-skill-creator`. Comparing each pair shows how closely a generated skill reproduces a hand-built one.
 
-`linear-reg`: this skill aims at fitting a continuous variable on a single or multiple covariates using linear regression. Both main effects and interaction effects can be assesed, for multiple covairates. Its procedure are as expected: input verification, EDA, assumption diagnostics, inferences, and report.
+**`skill-procedure-binary` (manual) vs. `two-sample-t-test` (generated).** Both skills compare two independent groups, and both follow the same workflow: input validation, group comparison plots, assumption checks, inference, hierarchical response levels, and validation. They differ slightly in the order and formatting of their output. The comparison suggests that when the same overall procedure is specified, a generated skill follows it as faithfully as a manually written one.
 
-`poisson-regression`: this skill aims at fitting a binary variable on a single or multiple covariates using poisson regression. It also goes through input verification, EDA, assumption diagnostics, inferences, report, with an additional refernce section, which was added during the skill-creation process.
+**`skill-procedure-survival` (manual) vs. `kaplan-meier-logrank` (generated).** Both skills estimate Kaplan–Meier survival curves and compare groups with the log-rank test, and both produce reports with the same overall structure and a validation step. The generated skill goes further in its diagnostics, adding a log–log plot, a histogram of follow-up times by group, and a Schoenfeld residual plot for assessing the proportional-hazards assumption. This pair shows that skills built for the same purpose can agree on core concepts while differing in detail, depending on the methodology and design choices made during creation.
+
+### Generated skills
+
+**`linear-reg`** fits a continuous response on one or more covariates using linear regression. With multiple covariates, it can assess both main effects and interactions. Its workflow covers input validation, exploratory data analysis, assumption diagnostics, inference, and reporting.
+
+**`poisson-regression`** fits a count response on one or more covariates using Poisson regression. It follows the same workflow as `linear-reg`, with an additional references section that was requested during the skill-creation process.
+
+### A note on using generated skills
+
+As the comparisons above show, a generated skill may not match the user's expectations in every detail, because the user's intent and the LLM agent's interpretation can differ. Treat generated skills as drafts that need supervision: read through the files, test the skill on known data, and correct anything undesirable, either directly or by asking the LLM agent to revise it.
 
 ## Disclaimer
-During the preparation of this skill, the authors utilized Claude AI to assist with structure optimization, debugging, and language clarity of the developed skill. The core conceptual logic, idea, and system design were independently conceived by the authors. All AI-modified snippets were thoroughly reviewed, verified, and tested by the authors.
-The author is not responsible for any furthur customization of the skills. The skills listed are for demonstration propurses only, and should be used when the user fully understand their usage.
+During the preparation of this skill, the author used Claude AI to assist with structural optimization, debugging, and language clarity. The core concepts, ideas, and system design were independently conceived by the author. All AI-modified content was thoroughly reviewed, verified, and tested by the author.
+
+The author is not responsible for any further customization of the skills. The skills listed are for demonstration purposes only and should be used only when the user fully understands their usage.
 
 ---
 Maintained by [Jennitong](https://github.com/Jennitong).
