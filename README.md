@@ -66,7 +66,7 @@ AI agents draw on a broad knowledge base and can solve most problems; however, t
 
 ## Structure
 
-This skill relies on progressive disclosure. `statistics-skill-creator` appears as a placeholder, and gives instructions for generating new skills. All of its files will be filled in (or discarded if not used) by AI Agent and are in the following format:
+This skill relies on progressive disclosure. `statistics-skill-creator` appears as a placeholder, and gives instructions for generating new skills. All of its files will be filled in accordingly (or discarded if not used) by AI Agent during skill creation process, and are in the following format:
 ```
 <statistics-skill-creator>/
 ├── SKILL.md                  # Main skill definition: YAML front matter, skill description, and the high-level workflow the AI agent follows
