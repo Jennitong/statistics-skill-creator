@@ -21,6 +21,7 @@ This skill creator is flexible as it is able to deal with any kind of task and a
 
 **Method 1**:
 Clone this repository:
+
 ```bash
 git clone https://github.com/Jennitong/statistics-skill-creator.git
 ```
