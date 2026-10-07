@@ -21,6 +21,7 @@ Clone this repository:
 
 ```bash
 git clone https://github.com/Jennitong/statistics-skill-creator.git
+```
 
 **Method 2**:
 
