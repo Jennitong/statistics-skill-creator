@@ -67,25 +67,23 @@ AI Agent has a massive database and knowledge base to solve most problems; howev
 
 This skill relies on progressive disclosure. All the files will be filled in by AI Agent, and are in the following format:
 
-```
-statistics-skill-creator/
-├── SKILL.md                  # main skill definition- contains YAML frontmatter, description, and general steps for AI Agent to go through
+<generated-skill>/
+├── SKILL.md                  # main skill definition: YAML frontmatter, description, and the general steps for the AI agent to follow
 ├── references/
 │   ├── assumptions.md        # lists and explains all assumptions to be verified; provides interpretations
-│   ├── eda.md                # provides instructions on how the exploratory data analysis should be completed
-│   ├── guide.md              # provides instructions and interpretations for each assumptions listed in `assumptions.md`
-│   ├── hierarchical.md       # provides instructions on how hierarchical outputs are conducted; deleted for general format
-│   ├── paper.md              # lists all the documents, textbooks and websites the use choose as references
-│   ├── skill-procedure.md    # contains instructions and the actual structure that the generated skill package should follow
-│   └── validation.md         # provides instructions and verified examples for the user to verify the correctness of the skill.
+│   ├── eda.md                # instructions for completing the exploratory data analysis
+│   ├── guide.md              # instructions and interpretations for each assumption listed in `assumptions.md`
+│   ├── hierarchical.md       # instructions for producing hierarchical outputs; removed for the general format
+│   ├── paper.md              # lists the documents, textbooks, and websites the user chose as references
+│   ├── skill-procedure.md    # instructions and the template structure the generated skill package follows
+│   └── validation.md         # instructions and verified examples for checking the correctness of the skill
 ├── scripts/
-│   ├── diagnostics.R         # contains codes to check the explicit assumptions
-│   ├── eda_code.R            # contains codes to complete the exploratory data analysis section
-│   ├── task_code1.R          # contains codes to complete task 1
-│   ├── task_code2.R          # contains codes to complete task 2
-│   └── task_code3.R          # contains codes to complete task 3
-└── README.md                 # provides documentary for this skill creator
-```
+│   ├── diagnostic.R          # code to check the explicit assumptions
+│   ├── eda_code.R            # code for the exploratory data analysis
+│   ├── task_code1.R          # code for task 1
+│   ├── task_code2.R          # code for task 2
+│   └── task_code3.R          # code for task 3
+└── README.md                 # documentation for the skill
 
 ## Validation
 
