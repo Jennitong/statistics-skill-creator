@@ -1,6 +1,6 @@
 # statistics-skill-creator: A Meta-Skill for Generating Reusable, Reference-Grounded Analytical Workflows for LLM Agents
 
-This `statistics-skill-creator` does not run statistical analyses itself. Instead, it helps users generate their own SKILL.md packages for statistical tasks with only a few prompts and minimal information. Once the user describes the task, the skill creator generates a reusable skill package designed to solve that specific task. The creator follows a consistent procedure for any kind of statistical task. Each generated skill package asks for the references that support the task, and it can validate inputs, conduct exploratory data analysis, check assumptions, and generate full reports.
+`statistics-skill-creator` does not run statistical analyses itself. Instead, it helps users generate their own SKILL.md packages for statistical tasks with only a few prompts and minimal information. Once the user describes the task, the skill creator generates a reusable skill package designed to solve that specific task. The creator follows a consistent procedure for any kind of statistical task. Each generated skill package asks for the references that support the task, and it can validate inputs, conduct exploratory data analysis, check assumptions, and generate full reports.
 
 The skill creator is flexible: it can handle a wide range of statistical tasks and accepts user input throughout the creation process. It is also structured: every skill it creates goes through the same procedure and follows the same templates. It is beginner-friendly, offering suggestions based on standard textbooks, while remaining open to other methodologies and textbooks the user provides.
 
@@ -25,19 +25,19 @@ git clone https://github.com/Jennitong/statistics-skill-creator.git
 
 **Method 2**:
 
-1. Download this `statistics-skill-creator` from GitHub.
+1. Download `statistics-skill-creator` from GitHub.
 
-2. Zip this downloaded package.
+2. Zip the downloaded folder.
 
-3. Go to `claude.ai` or `Claude`'s desktop app and open the sidebar, then select `customize`.
+3. Go to `claude.ai` or the `Claude` desktop app, open the sidebar, and select `Customize`.
 
-4. Under the `Skills` tab, select `Add` and then `Upload` this zipped folder.
+4. Under the `Skills` tab, select `Add`, then `Upload` the zipped folder.
 
-5. This skill will be named `statistics-skill-creator` automatically.
+5. The skill will be named `statistics-skill-creator` automatically.
 
-**Note**: The user could choose to zip the entire downloaded folder and upload it as a skill. Alternatively, the user could manually delete the `statistics-skill-creator.Rproj` file before zipping for efficiency and smaller digital storage size. Either way, the skill package will run smoothly.
+**Note**: Users may zip and upload the entire downloaded folder. Alternatively, they may delete the `statistics-skill-creator.Rproj` file before zipping to reduce the package size. Either way, the skill will run correctly.
 
-Tip: After installing the skill, the user can read all of its content in Claude instead of opening each file on laptop.
+**Tip**: Once the skill is installed, users can browse all of its files directly in Claude instead of opening each one locally.
 
 ## Usage
 
@@ -45,29 +45,30 @@ To use this skill:
 
 1. Choose the `Code` option in `Claude`.
 
-2. Enter your statistical scenario or question with the **triggering words**, and any relevant dataset.
+2. Describe your statistical scenario or question using the **triggering words**, and attach any relevant dataset.
 
-3. If prompted, allow Claude to run or install any packages.
+3. If prompted, allow Claude to run or install any required packages.
 
-4. After the new skill package is created, make sure to go through the details in the package. Users might need to correct discrepancies in the files.
+4. After the new skill package is created, review its contents carefully. Users may need to correct discrepancies in the files.
 
 ### Triggering Words
 
-To use this skill, users can explicitly ask Claude Code to use the `statistics-skill-creator` skill to conduct the analysis. Otherwise, users can trigger tasks through task-specific phrases.
+Users can explicitly ask Claude Code to use the `statistics-skill-creator` skill to create a new skill. Alternatively, the skill can be triggered by phrases such as:
 
 - "new skill"
 - "skill-procedure"
 - "make this a skill"
 
+
 ## Resources
 
-AI Agent has a massive database and knowledge base to solve most problems; however, the methodologies AI suggests might not be the specific ones we would like to apply. Therefore, during the skill creation process, users have the option to provide specific papers, documents, or websites they want AI to refer to when completing certain tasks. These resources could provide information on how and which assumptions need to be confirmed, how to properly conduct exploratory data analysis, which codes to use, how to compute important numerical values, etc. However, these resources need to be publicly available and accessible to AI Agents. If not, the user could manually upload texts, PDFs, or images, provided such use **does not** infringe on any copyright. The user is responsible for the files they upload.
+AI agents draw on a broad knowledge base and can solve most problems; however, the methodologies they suggest may not be the ones we want to apply. Therefore, during the skill creation process, users can provide specific papers, documents, or websites for the AI agent to follow. These resources can specify which assumptions need to be checked and how, how to conduct exploratory data analysis, which code to use, how to compute key numerical values, and so on. Resources must be publicly available and accessible to the AI agent. If they are not, users may upload text, PDFs, or images directly, provided such use **does not** infringe any copyright. Users are responsible for the files they upload.
 
 ## Structure
 
-This skill relies on progressive disclosure. All the files will be filled in by AI Agent, and are in the following format:
+This skill relies on progressive disclosure. `statistics-skill-creator` appears as a placeholder, and gives instructions for generating new skills. All of its files will be filled in (or discarded if not used) by AI Agent and are in the following format:
 ```
-<generated-skill>/
+<statistics-skill-creator>/
 ├── SKILL.md                  # Main skill definition: YAML front matter, skill description, and the high-level workflow the AI agent follows
 ├── references/
 │   ├── assumptions.md        # Defines the assumptions relevant to the statistical procedure and the evidence used to assess them
@@ -83,8 +84,6 @@ This skill relies on progressive disclosure. All the files will be filled in by 
 │   ├── task_code1.R          # Code for the first procedure-specific analytical task
 │   ├── task_code2.R          # Code for the second procedure-specific analytical task
 │   └── task_code3.R          # Code for the third procedure-specific analytical task
-├── data/
-│   └── data.csv              # Optional dataset for examples, simulations, or validation during skill development
 └── README.md                 # Human-readable documentation describing the purpose and use of the skill package
 ```
 ## Validation
@@ -96,13 +95,13 @@ In the skill creation process, AI Agent is able to name some examples, and users
 
 ## Hierarchical
 
-Apart from general output format, this skill provides three output options of differing levels of detail to best meet varying statistical needs. The options are as follows:
+In addition to the general output format, this skill offers three output options with different levels of detail to meet varying statistical needs:
 
 - **Brief**: reports only the most crucial figures and results. Best suited for professionals and practitioners who are already familiar with the relevant statistical methods and need results, not explanations.
 
 - **Moderate**: includes everything in Brief, along with an explanation of the test assumptions and supporting tables where relevant. Best suited for users who have studied the relevant statistical concepts but are not deeply experienced with them in practice.
 
-- **Detailed**: includes everything in Moderate, plus a comprehensive summary on the methods used, definitions of all key terms, and step-by-step interpretations. Best suited for users without a formal statistical background who need conceptual grounding alongside the results.
+- **Detailed**: includes everything in Moderate, plus a comprehensive summary of the methods used, definitions of all key terms, and step-by-step interpretations. Best suited for users without a formal statistical background who need conceptual grounding alongside the results.
 
 ## Demonstrations
 
