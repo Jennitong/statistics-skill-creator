@@ -1,6 +1,3 @@
-#### Add some demo's: showcase what we have done what our skill creator could do.
-
-
 # statistics-skill-creator
 
 This SKILL.md does not itself run any statistical tasks - its aim is to help users generate their own SKILL.md packages that evaluate statistical tasks with only a few prompts and information. Once the user describes what task should be done, this skill creator is able to generate a reusable skill package for you that aims at solving that specific task. This skill creator follows a specific procedure for any kind of statistical task. The generated SKILL.md package will ask for the references that support the tasks, and it is able to verify inputs, conduct exploratory data analysis, check assumptions, and generate the full reports.
@@ -105,9 +102,23 @@ Apart from general output format, this skill provides three output options of di
 
 - **Detailed**: includes everything in Moderate, plus a comprehensive summary on the methods used, definitions of all key terms, and step-by-step interpretations. Best suited for users without a formal statistical background who need conceptual grounding alongside the results.
 
+## Demonstrations
+
+Under the `\Demonstration` folder, there are a few skill files aimed at conducting two-sample t-test, survival analysis, poisson regression, and linear regression. Users could download the zippped files and use them in Claude, and conduct the test on any data set. All of the skills are included for demonstarion purposes. If user would like to use these tools, they should proof read the relevant skill, and see if certain methodologies and result meet their expectations. The user could feel free to customize the zipped skills, as long as it better assists with their needs.
+
+Specifically, the skills for survival analysis and two-sample t-test comes in two versions: a skill package created by author manually, and a skill package created using `statistics-skill-creator`. These two versions are included for usage and comparison purposes.
+
+`skill-procedure-binary` vs `two-sample-t-test`: The manually created two-sample t-test skill package, `skill-procedure-binary`, and the `statistics-skill-creator`-created skill file, `two-sample-t-test`, will return the user bar plots comparing both groups, input verification, contingency table, test choice between Fisher's Exact test and Chi-squared test based on sample size, assumption checking, inferences, hierarchical response levels, and validation. The structures presented (such as the order and format) are slightly deviated, but the core methodology is the same. This could show that when the same methodologies are used, the core test result will be similar, whether the skill package is human-generated or LLM-agent-generated.
+
+`skill-procedure-survival` vs `kaplan-meier-logrank`: The manually created survival analysis file, `skill-procedure-survival`, has some differences compared to the skill generated using `statistics-skill-creator` , `kaplan-meier-logrank`. The latter would generate reports that contain more plots, such as the log-log plot and histogram for distribution over follow-up times for categorical variable, and a Schoenfeld residual plot for assessing proportional-hazards assumption. However, the general report still follow the same structure will similar core contents, as well as the validation step. Thus, we can see that although both are built for the same purpose, if methodologies are different or if design are complicated to different levels, user will end up with skills that may be similar in the core concepts but differ in details. Thus, it is still important to keep in mind that users are highlyh recommended to go though the detailed in the generated skill file, and should verify the usage by using it on LLM agents. If anything undesirable happens, the user should be able to edit or let LLM agent to do the correction. The important details might deviated from what the users expect and what the LLM agents understand. Thus, the generated skills should be treated with caution and be supervised.
+
+`linear-reg`: this skill aims at fitting a continuous variable on a single or multiple covariates using linear regression. Both main effects and interaction effects can be assesed, for multiple covairates. Its procedure are as expected: input verification, EDA, assumption diagnostics, inferences, and report.
+
+`poisson-regression`: this skill aims at fitting a binary variable on a single or multiple covariates using poisson regression. It also goes through input verification, EDA, assumption diagnostics, inferences, report, with an additional refernce section, which was added during the skill-creation process.
 
 ## Disclaimer
 During the preparation of this skill, the authors utilized Claude AI to assist with structure optimization, debugging, and language clarity of the developed skill. The core conceptual logic, idea, and system design were independently conceived by the authors. All AI-modified snippets were thoroughly reviewed, verified, and tested by the authors.
+The author is not responsible for any furthur customization of the skills. The skills listed are for demonstration propurses only, and should be used when the user fully understand their usage.
 
 ---
 Maintained by [Jennitong](https://github.com/Jennitong).
