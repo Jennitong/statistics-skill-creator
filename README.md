@@ -37,6 +37,8 @@ git clone https://github.com/Jennitong/statistics-skill-creator.git
 
 **Note**: The user could choose to zip the entire downloaded folder and upload it as a skill. Alternatively, the user could manually delete the `statistics-skill-creator.Rproj` file before zipping for efficiency and smaller digital storage size. Either way, the skill package will run smoothly.
 
+Tip: After installing the skill, the user can read all of its content in Claude instead of opening each file on laptop.
+
 ## Usage
 
 To use this skill:
