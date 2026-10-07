@@ -1,18 +1,18 @@
 # statistics-skill-creator
 
-This SKILL.md does not itself run any statistical tasks - its aim is to help users generate their own SKILL.md packages that evaluate statistical tasks with only a few prompts and information. Once the user describes what task should be done, this skill creator is able to generate a reusable skill package for you that aims at solving that specific task. This skill creator follows a specific procedure for any kind of statistical task. The generated SKILL.md package will ask for the references that support the tasks, and it is able to verify inputs, conduct exploratory data analysis, check assumptions, and generate the full reports.
+This skill does not run statistical analyses itself. Instead, it helps users generate their own SKILL.md packages for statistical tasks with only a few prompts and minimal information. Once the user describes the task, the skill creator generates a reusable skill package designed to solve that specific task. The creator follows a consistent procedure for any kind of statistical task. Each generated skill package asks for the references that support the task, and it can validate inputs, conduct exploratory data analysis, check assumptions, and generate full reports.
 
-This skill creator is flexible as it is able to deal with any kind of task and accepts user inputs during the creation process. It is structural in the sense that for any skills to be created, it goes through a specific procedure and holds certain templates. This creator is user-friendly and beginner-friendly, as it is able to provide suggestions based on standardized textbooks, but is open to new methodologies, textbooks, as long as provided.
+The skill creator is flexible: it can handle a wide range of statistical tasks and accepts user input throughout the creation process. It is also structured: every skill it creates goes through the same procedure and follows the same templates. It is beginner-friendly, offering suggestions based on standard textbooks, while remaining open to other methodologies and textbooks the user provides.
 
 ## Features
 
-- Interviews the user for details and methodologies that will be used for the task (Read the `Resources` section for more details)
-- Supports general (one format) or hierarchical (brief / moderate / detailed) report output (Read the `Hierarchical` section for more details)
-- Relies on references the user provides - it collects references first so every generated skill grounds its methods, code, and interpretation in sources the end user supplies.
-- If the references do not contain information in a certain section, Claude would offer suggestions, while the user is able to provide that information manually as well.
-- Always confirms the details (test choice, significance level, power) — never assumes.
-- Self-checks generated files (valid frontmatter, no dangling paths, no leftover placeholders) before returning to the user
-- Allows the user to choose where the generated package should be stored (desktop, downloads, specific folders)
+- Interviews the user about the details and methodologies to be used for the task (see the `Resources` section for more details).
+- Supports a general (single-format) or hierarchical (brief / moderate / detailed) report output (see the `Hierarchical` section for more details).
+- Relies on user-provided references: it collects references first, so every generated skill grounds its methods, code, and interpretation in sources the user supplies.
+- If the references do not cover a certain section, Claude offers suggestions, and the user may also provide that information manually.
+- Always confirms key details (test choice, significance level, power) and never assumes them.
+- Self-checks the generated files (valid frontmatter, no dangling paths, no leftover placeholders) before returning them to the user.
+- Lets the user choose where the generated package is stored (Desktop, Downloads, or a specific folder).
 
 ## Installation
 
@@ -21,7 +21,6 @@ Clone this repository:
 
 ```bash
 git clone https://github.com/Jennitong/statistics-skill-creator.git
-```
 
 **Method 2**:
 
