@@ -301,7 +301,25 @@ Do not randomly save the created folder in the device. Ask the client where the
 folder should be saved, so the client knows where exactly to find the folder.
 ## How to ask
 
-- Batch related questions together rather than one at a time.
+- **Always ask with the `AskUserQuestion` tool, never as plain-text lists.** Every
+  interview question in Steps 0–4 (references, citation format, each template
+  section in Step 1, output level, result types, examples/validation mode, folder
+  location) must be a clickable multiple-choice question so the client can pick an
+  option instead of typing.
+- **One step at a time.** Ask about one row of Step 1's table (one template section)
+  per `AskUserQuestion` call, wait for the answer, then move on to the next. Never
+  dump several sections' questions into one message, and never generate any files
+  until every step has been answered.
+- Within a single step, related sub-questions may share one call (the tool allows
+  up to 4 questions per call, 2–4 options each). Put the recommended option first
+  and append "(Recommended)" to its label; use `multiSelect: true` when choices are
+  not mutually exclusive (e.g. which non-negotiable rules or assumptions to keep).
+- Open-ended answers (reference names, citation details, file paths, custom
+  examples) still go through `AskUserQuestion`: offer the most likely concrete
+  options and let the client type their own via the automatic "Other" choice.
+- Any required explanation (e.g. "Explaining the output-level choice") is written as
+  a short text message immediately before that step's `AskUserQuestion` call, or in
+  the options' `description` fields — not as a substitute for the question.
 - Lead with a concrete suggestion, then ask for confirmation or correction — don't
   present an open-ended blank.
 - The suggestions should base on the contents in references if provided.
