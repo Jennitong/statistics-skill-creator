@@ -25,17 +25,15 @@ git clone https://github.com/Jennitong/statistics-skill-creator.git
 
 **Method 2**:
 
-1. Download `statistics-skill-creator` from GitHub.
+1. Download `statistics-skill-creator.zip` from GitHub.
 
-2. Zip the downloaded folder.
+2. Go to `claude.ai` or the `Claude` desktop app, open the sidebar, and select `Customize`.
 
-3. Go to `claude.ai` or the `Claude` desktop app, open the sidebar, and select `Customize`.
+3. Under the `Skills` tab, select `Add`, then `Upload` the zipped folder.
 
-4. Under the `Skills` tab, select `Add`, then `Upload` the zipped folder.
+4. The skill will be named `statistics-skill-creator` automatically.
 
-5. The skill will be named `statistics-skill-creator` automatically.
-
-**Note**: Users may zip and upload the entire downloaded folder. Alternatively, they may delete the `statistics-skill-creator.Rproj` file before zipping to reduce the package size. Either way, the skill will run correctly.
+**Note**: Users may downloaded the entire GitHub folder. Note that before manually zipping the folder, the user should delete the `Demonstration` folder and is suggested to delete `statistics-skill-creator.Rproj` file to reduce the package size.
 
 **Tip**: Once the skill is installed, users can browse all of its files directly in Claude instead of opening each one locally.
 
